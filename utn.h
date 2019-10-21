@@ -45,6 +45,8 @@ void mostrarClientes(eCliente vec[], int tam);
 int buscarCliente(int codigo, eCliente vec[], int tam);
 int bajaCliente(eCliente vec[], int tam);
 int ModificarCliente(eCliente vec[], int tam);
+int altaAlquiler(eCliente clientes, int tam, eAlquileres alquileres, int tamA, eFecha feha, eJuegos juegos );
+eAlquileres newAlquiler (int codigoAlquiler, int codigoJuego, int codigoCliente, eFecha fecha);
 
 char menu();
 
@@ -56,8 +58,9 @@ char menu(){
     printf("-a ALTAS \n");
     printf("-b MODIFICAR \n");
     printf("-c BAJA \n");
-    printf("-d INFORMES \n");
-    printf("-e SALIR \n");
+    printf("-d LISTAR \n");
+    printf("-e ALQUILERES \n");
+    printf("-f SALIR");
     printf("seleccione una opcion \n");
     fflush(stdin);
     scanf("%c", &opcion);
@@ -118,14 +121,14 @@ int altaCliente(eCliente vec[], int tam, int codigo){
 
         printf("ingrese telefono: ");
         scanf("%d", &telefono);
+        todoOk = 1;
 
+        vec[indice] = newCliente(codigo, nombre, apellido, sexo, telefono);
+        printf("Alta exitosa!!\n\n");
         }
 
 
-
-        vec[indice] = newCliente(codigo, nombre, apellido, sexo, telefono);
-        todoOk = 1;
-        printf("Alta exitosa!!\n\n");
+        return todoOk;
     }
 
 //busca en el vector un indice que este libre
@@ -164,6 +167,19 @@ eCliente newCliente(
     cl.isEmpty = 0;
 
     return cl;
+}
+
+eAlquileres newAlquiler(
+    int codigoAlquiler,
+    int codigoJuego,
+    int codigoCliente,
+    eFecha fecha
+){
+    eAlquileres al;
+    al.codigoDeAlquiler = codigoAlquiler;
+    al.codigoDeCliente = codigoCliente;
+    al.codigoDeJuego = codigoJuego;
+    al.fecha = fecha;
 }
 
 // muestra todos los clientes tienen alta
@@ -330,6 +346,20 @@ void ordenarCLientes(eCliente vec[], int tam)
                 vec[i] = vec[j];
                 vec[j] = auxCliente;
             }
+            else if ( strcmp (vec[i].nombre, vec[j].nombre) == 0 && strcmp(vec[i].apellido, vec[j].apellido) > 0){
+
+                auxCliente = vec[i];
+                vec[i] = vec[j];
+                vec[j]= auxCliente;
+
+            }
         }
     }
 }
+
+/*int altaAlquiler(eCliente clientes, int tam, eAlquileres alquileres, int tamaño, eFecha fecha, eJuegos juegos){
+    int codigoAlquiler;
+    int codigoJuego;
+    int codigoCliente;
+    eFecha fechaAlquiler;
+}*/

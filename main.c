@@ -15,6 +15,7 @@ int main()
     char salir = 'n';
     int ultimoCodigo = 0;
     int todoOk;
+    char option;
 
 
       do{
@@ -38,10 +39,22 @@ int main()
             bajaCliente(clientes, TAM);
             break;
         case 'd':
+             ordenarCLientes(clientes, TAM);
              mostrarClientes(clientes, TAM);
 
             break;
         case 'e':
+            printf("******ALQUILERES******\n\n");
+            printf("a- ALTA");
+            fflush(stdin);
+            scanf("%c", option);
+            switch (option){
+            case 'a':
+                //altaAlquiler();
+                break;
+
+            }
+        case 'f':
             printf("cancelar salir 'n' confirmar ingrese cualquier otra letra.\n");
             fflush(stdin);
             salir = getche();
